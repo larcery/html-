@@ -1,0 +1,407 @@
+<html>
+<head>
+    <title>Galería</title>
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <style>
+        .whatsapp-body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #000000;
+          
+        }
+        .whatsapp-fixed-label {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background-color: #6bf317; 
+            color: white; 
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1000; 
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.3s;
+            margin-top: 120px;
+        }
+        .whatsapp-fixed-label i {
+            margin-right: 10px;
+            font-size: 1.5em;
+        }
+        .whatsapp-fixed-label:hover {
+            background-color: #058e03ce; 
+            transform: scale(1.05);
+        }
+    </style>
+
+    <style>
+        .custom-body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .custom-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0px;
+            background-color: #000000;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-bottom: 2px solid #FFD700;
+        }
+        .custom-logo img {
+            height: 80px; 
+            animation: colorChange 2s infinite; 
+            margin-left: 50px; 
+        }
+        @keyframes colorChange {
+            0% { filter: hue-rotate(0deg); }
+            25% { filter: hue-rotate(90deg); }
+            50% { filter: hue-rotate(180deg); }
+            75% { filter: hue-rotate(270deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+        .custom-menu {
+            display: flex;
+            gap: 10px; 
+        }
+        .custom-menu button {
+            padding: 15px 15px;
+            background-color: transparent;
+            color: white;
+            border: 2px solid transparent;
+            border-radius: 0px;
+            cursor: pointer;
+            transition: border-color 0.3s, box-shadow 0.3s, color 0.3s;
+            font-size: 20px; 
+            border-radius: 20px;
+            margin-right: 20px;
+        }
+        @keyframes borderBlink {
+            0% { border-color: orange; box-shadow: 0 0 10px 2px orange; }
+            50% { border-color: white; box-shadow: 0 0 10px 2px white; }
+            100% { border-color: orange; box-shadow: 0 0 10px 2px orange; }
+        }
+        .custom-menu button:hover {
+            animation: borderBlink 1s infinite;
+            color: orange;
+        }
+    </style>
+
+
+    <style>
+        .gallery-body {
+            font-family: Arial black, sans-serif;
+            margin: 0;
+            padding: 0;
+         
+        }
+
+        .gallery-banner {
+            background-color: #000000;
+            color: #FFD700;
+            text-align: center;
+            padding: 20px;
+            font-size: 80px;
+            font-weight: bold;
+            margin-top: 30px;
+            box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+     
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            padding: 20px;
+     
+        }
+
+        .gallery-item {
+            position: relative;
+            width: 100%;
+            cursor: pointer;
+            overflow: hidden;
+          
+     
+        }
+
+        .gallery-item img {
+            width: 100%;
+            display: block;
+            transition: opacity 1s ease-in-out;
+        
+     
+        }
+
+        .gallery-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 50px;
+            pointer-events: none;
+        }
+
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 60px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.9);
+            animation: galleryFadeIn 0.5s;
+        
+     
+        }
+
+        .gallery-modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+        .gallery-close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .gallery-close:hover,
+        .gallery-close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        #gallery-randomButton {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #555;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #gallery-randomButton:hover {
+            background-color: #777;
+        }
+
+        @keyframes galleryFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    .content {
+        flex: 1;
+    }
+
+    .footer {
+        background-color: #000000;
+        color: white;
+        display: flex;
+        justify-content: space-between; 
+        align-items: center;
+        height: 40vh; 
+        width: 100%;
+        position: relative; 
+        margin-top: auto; 
+        border-top: 4px solid #FFD700;
+    }
+
+    .diptico-left {
+        display: flex;
+        align-items: center;
+        padding-left: 0px;
+    }
+
+    .diptico-left img {
+        width: 200px; 
+        margin-right: 50px; 
+        margin-left: 50px; 
+    }
+
+    .diptico-right {
+        padding-right: 100px;
+        text-align: right; 
+    }
+
+    .diptico-texto {
+        text-align: left; 
+        margin-bottom: 10px;
+        margin-left: 100px; 
+    }
+
+    .diptico-texto h2 {
+        margin-top: 50px;
+    }
+
+    .diptico-iconos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .diptico-icono {
+        margin-bottom: 20px;
+        cursor: pointer;
+        transition: color 1s ease, transform 0.3s ease; 
+    }
+
+    .diptico-icono img {
+        width: 50px; /* Tamaño inicial del ícono */
+    }
+
+    .diptico-icono:hover img {
+        filter: brightness(5.5); 
+        transform: scale(1.2); 
+    }
+
+    .diptico-icono:hover {
+        color: orange; 
+    }
+</style>
+
+
+
+</head>
+
+
+<body class="whatsapp-body">
+    <a href="https://api.whatsapp.com/send?phone=921285801&text=Hola, me gustaría obtener más información." class="whatsapp-fixed-label" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        Consultar por WhatsApp
+    </a>
+
+
+<body class="custom-body">
+    <div class="custom-container">
+        <div class="custom-logo">
+            <img src="LOGO LETRA.png" alt="Logo">
+        </div>
+        <div class="custom-menu">
+            
+            <button onclick="location.href='file:///C:/Users/PC/OneDrive/Escritorio/PRUEBAS%20CANTERA/paginas%20reales/1%20pagina%20principal%20cantera/pagina%20Cantera.html'">Inicio</button>
+            <button onclick="location.href='file:///C:/Users/PC/OneDrive/Escritorio/PRUEBAS%20CANTERA/paginas%20reales/2.Carpeta%20nosotros/NOSOTROS.html'">Nosotros</button>
+            <button onclick="location.href='file:///C:/Users/PC/OneDrive/Escritorio/PRUEBAS%20CANTERA/paginas%20reales/3.carpeta%20servicios/prueba%20agregados.html'">Servicios</button>
+            <button onclick="location.href='file:///C:/Users/PC/OneDrive/Escritorio/PRUEBAS%20CANTERA/paginas%20reales/4.carpeta%20Galeria/Galeria.html'">Galeria</button>
+            <button onclick="location.href='file:///C:/Users/PC/OneDrive/Escritorio/PRUEBAS%20CANTERA/paginas%20reales/6.%20Carpeta%20contacto/contacto.html'">Contacto</button>
+        </div>
+    </div>
+
+
+
+<body class="gallery-body">
+    <div class="gallery-banner">GALERIA</div>
+    <div class="gallery-container">
+        <div class="gallery-item" onclick="showImage(this)">
+            <img src="imagen 1.jpg" alt="Imagen 1">
+            <div class="gallery-watermark">CANTERA</div>
+        </div>
+        <div class="gallery-item" onclick="showImage(this)">
+            <img src="imagen 2.jpg" alt="Imagen 2">
+            <div class="gallery-watermark">CANTERA</div>
+        </div>
+        <div class="gallery-item" onclick="showImage(this)">
+            <img src="imagen 3.jpg" alt="Imagen 3">
+            <div class="gallery-watermark">CANTERA</div>
+        </div>
+        <div class="gallery-item" onclick="showImage(this)">
+            <img src="imagen 4.jpg" alt="Imagen 4">
+            <div class="gallery-watermark">CANTERA</div>
+        </div>
+        <div class="gallery-item" onclick="showImage(this)">
+            <img src="imagen 5.jpg" alt="Imagen 5">
+            <div class="gallery-watermark">CANTERA</div>
+        </div>
+        <div class="gallery-item" onclick="showImage(this)">
+            <img src="imagen 6.jpg" alt="Imagen 6">
+            <div class="gallery-watermark">CANTERA</div>
+        </div>
+        <div class="gallery-item" onclick="showImage(this)">
+            <img src="imagen 7.jpg" alt="Imagen 7">
+            <div class="gallery-watermark">CANTERA</div>
+        </div>
+        <div class="gallery-item" onclick="showImage(this)">
+            <img src="imagen 8.jpg" alt="Imagen 8">
+            <div class="gallery-watermark">CANTERA</div>
+        </div>
+    </div>
+
+    <div id="gallery-modal" class="gallery-modal" onclick="closeModal()">
+        <span class="gallery-close" onclick="closeModal()">&times;</span>
+        <img class="gallery-modal-content" id="gallery-modal-image">
+        <button id="gallery-randomButton" onclick="showRandomImage(event)">next</button>
+    </div>
+
+    <script>
+        let modal = document.getElementById("gallery-modal");
+        let modalImg = document.getElementById("gallery-modal-image");
+
+        function showImage(img) {
+            modal.style.display = "block";
+            modalImg.src = img.querySelector("img").src;
+        }
+
+        function closeModal() {
+            modal.style.display = "none";
+        }
+
+        function showRandomImage(event) {
+            event.stopPropagation();
+            let images = document.getElementsByClassName("gallery-item");
+            let randomIndex = Math.floor(Math.random() * images.length);
+            modalImg.src = images[randomIndex].querySelector("img").src;
+        }
+    </script>
+
+<div class="content"></div>
+<div class="footer">
+    <div class="diptico-left">
+        <img src="LOGO.png" alt="Logo de la empresa">
+        <div class="diptico-texto">
+            <h2>Contáctanos</h2>
+            <p>RUC: 20600161327</p>
+            <p>Dirección: Chachapoyas-Amazonas</p>
+            <p>Teléfonos: 921285801-944634937</p>
+        </div>
+    </div>
+    <div class="diptico-right">
+        <div class="diptico-texto"></div>
+        <h2>Redes Sociales</h2>
+        <div class="diptico-iconos">
+            <a href="https://wa.me/921285801" class="diptico-icono" target="_blank"><img src="WHATSAPP.png" alt="WhatsApp"></a>
+            <a href="tel:+123456789" class="diptico-icono" target="_blank"><img src="LLAMADAS.png" alt="Llamada"></a>
+            <a href="https://web.facebook.com/jhovani.lopezbazan" class="diptico-icono" target="_blank"><img src="FACEBOOK.png" alt="Facebook"></a>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

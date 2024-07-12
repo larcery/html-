@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería Interactiva</title>
+    <style>
+        .custom-gallery {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .custom-gallery .gallery {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+        }
+        .custom-gallery .gallery-item {
+            position: relative;
+            flex: 1;
+            overflow: hidden;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.3); /* Fondo ligeramente transparente */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        .custom-gallery .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: brightness(70%); /* Reducir el brillo de la imagen */
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .custom-gallery .gallery-item:hover img {
+            transform: scale(1.2);
+            filter: brightness(100%); /* Restaurar el brillo original de la imagen */
+        }
+        .custom-gallery .info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            text-align: center;
+            transition: transform 0.3s ease;
+            transform: translateY(100%);
+        }
+        .custom-gallery .gallery-item:hover .info {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-gallery">
+        <div class="gallery">
+            <div class="gallery-item">
+                <img src="imagen 1.jpg" alt="Imagen 1">
+                <div class="info">Información de la Imagen 1</div>
+            </div>
+            <div class="gallery-item">
+                <img src="imagen 2.jpg" alt="Imagen 2">
+                <div class="info">Información de la Imagen 2</div>
+            </div>
+            <div class="gallery-item">
+                <img src="imagen 3.jpg" alt="Imagen 3">
+                <div class="info">Información de la Imagen 3</div>
+            </div>
+            <div class="gallery-item">
+                <img src="imagen 4.jpg" alt="Imagen 4">
+                <div class="info">Información de la Imagen 4</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
